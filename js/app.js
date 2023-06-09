@@ -4,9 +4,9 @@ const containerCardsTareas = document.getElementById("containerCardsTareas");
 let contadorTareas = document.getElementById("contadorTareas");
 
 class Tarea {
-  constructor(titulo, tareaLista = false, id = new Date().getTime()) {
+  constructor(titulo, marcada = false, id = new Date().getTime()) {
     this.titulo = titulo;
-    this.tareaLista = tareaLista;
+    this.marcada = marcada;
     this.id = id;
   }
 }
@@ -25,14 +25,32 @@ const cargarTareas = (tareas, contenedor) => {
   }
 };
 
+const eliminarTarea = (id) => {
+  const index = tareas.findIndex((tarea) => tarea.id === id);
+  if (index !== -1) {
+    tareas.splice(index, 1);
+    cargarTareas(tareas, containerCardsTareas);
+    contadorTareas.innerText = tareas.length;
+  }
+};
+
+const marcarComoReady = (id) => {
+  const tarea = tareas.find((tarea) => tarea.id === id);
+  if (tarea) {
+    tarea.marcada = !tarea.marcada;
+    cargarTareas(tareas, containerCardsTareas);
+    console.log(tarea);
+  }
+};
+
 const generarTarjeta = (tarea) => {
   const card = document.createElement("article");
   card.classList.add("card", "my-3");
 
-  const tareaEstado = tarea.tareaLista
+  const tareaEstado = tarea.marcada
     ? "text-decoration-line-through"
     : "fw-bold";
-  const tareaIcono = tarea.tareaLista
+  const tareaIcono = tarea.marcada
     ? "fa-solid fa-circle-check fa-lg"
     : "fa-regular fa-circle-check fa-lg";
 
@@ -40,14 +58,25 @@ const generarTarjeta = (tarea) => {
     <div class="card-body d-flex justify-content-between">
       <h5 class="${tareaEstado}">${tarea.titulo}</h5>
       <div class="d-grid gap-2 d-md-block">
-        <button class="btn btn-primary btnCheck" title="Marcar como lista" type="button">
-          <i class=" ${tareaIcono} "></i>
+        <button class="btn btn-primary" id="btnMarcar" title="Marcar como lista" type="button">
+          <i class="${tareaIcono}"></i>
         </button>
-        <button class="btn btn-danger btnEliminate" title="Eliminar tarea" type="button">
+        <button class="btn btn-danger" id="btnEliminate" title="Eliminar tarea" type="button">
           <i class="fa-solid fa-trash-can"></i>
         </button>
       </div>
     </div>`;
+
+  const btnMarcar = card.querySelector("#btnMarcar");
+  const btnEliminar = card.querySelector("#btnEliminate");
+
+  btnEliminar.addEventListener("click", () => {
+    eliminarTarea(tarea.id);
+  });
+
+  btnMarcar.addEventListener("click", () => {
+    marcarComoReady(tarea.id);
+  });
 
   return card;
 };
