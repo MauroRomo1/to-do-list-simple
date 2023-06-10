@@ -14,13 +14,10 @@
     <title>Lista de pendientes</title>
   </head>
   <body>
-    <header>
-      <h2 class="text-center">Header</h2>
-    </header>
     <main>
       <section class="container my-5">
         <div class="row mb-3 justify-content-center">
-          <div class="col-11 col-lg-8 border border-3">
+          <div class="col-11 col-lg-8 bg-white border border-3 border-dark">
             <form id="formularioTarea">
               <div class="input-group my-3">
                 <input
@@ -32,11 +29,7 @@
                   placeholder="Escribe una tarea..."
                   required
                 />
-                <button
-                  class="btn btn-outline-secondary"
-                  title="Añadir tarea"
-                  type="submit"
-                >
+                <button class="btn btnBg" title="Añadir tarea" type="submit">
                   <i class="fa-solid fa-plus fa-xl"></i>
                 </button>
               </div>
@@ -49,12 +42,12 @@
         </div>
 
         <div class="row mb-3 justify-content-center">
-          <h3 class="text-center">
+          <h4 class="text-center text-white">
             <i class="fa-solid fa-clipboard-list"></i>
             Tareas por hacer
-          </h3>
+          </h4>
           <div
-            class="col-11 col-lg-8 border border-3"
+            class="col-11 col-lg-8 bg-white border border-3 border-dark"
             id="containerCardsTareas"
           >
             <h4 class="text-center text-muted">
@@ -64,24 +57,21 @@
         </div>
 
         <div class="row my-5 justify-content-center">
-          <h3 class="text-center">
+          <h4 class="text-center text-white">
             <i class="fa-solid fa-clipboard-check"></i>
             Tareas realizadas
-          </h3>
+          </h4>
           <div
-            class="col-11 col-lg-8 border border-3"
+            class="col-11 col-lg-8 bg-white border border-3 border-dark"
             id="containerTareasRealizadas"
           >
-            <h4 class="text-center text-muted">
+            <h5 class="text-center text-muted">
               Aun no hay tareas en la lista.
-            </h4>
+            </h5>
           </div>
         </div>
       </section>
     </main>
-    <footer>
-      <h2 class="text-center">Footer</h2>
-    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
