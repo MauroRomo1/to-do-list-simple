@@ -2,6 +2,31 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-image: linear-gradient(
+    180deg,
+    hsl(207deg 65% 14%) 0%,
+    hsl(205deg 68% 17%) 50%,
+    hsl(204deg 69% 19%) 100%
+  );
+}
+
+.btnEliminar {
+  background-color: #e60211;
+  color: #ffff;
+}
+
+.btnEliminar:hover {
+  background-color: #a6020d;
+  color: #ffff;
+}
+
+.btnBg {
+  background-color: #6610f2;
+  color: #ffff;
+}
+.btnBg:hover {
+  background-color: #5810cc;
+  color: #ffff;
 }
 
 footer {

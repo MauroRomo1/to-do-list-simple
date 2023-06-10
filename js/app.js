@@ -24,7 +24,7 @@ const cargarTareas = (tareas, contenedor) => {
       contenedor.insertBefore(card, contenedor.firstChild);
     });
   } else {
-    contenedor.innerHTML = `<h4 class="text-center text-muted">Aun no hay tareas en la lista.</h4>`;
+    contenedor.innerHTML = `<h5 class="text-center text-muted">Aun no hay tareas en la lista.</h5>`;
   }
 };
 
@@ -57,12 +57,12 @@ const generarTarjeta = (tarea) => {
 
   card.innerHTML = `
     <div class="card-body d-flex justify-content-between">
-      <h5 class="${tareaEstado}">${tarea.titulo}</h5>
+      <h6 class="${tareaEstado}">${tarea.titulo}</h6>
       <div class="d-grid gap-2 d-md-block">
-        <button class="btn btn-primary" id="btnMarcar" title="Marcar como lista" type="button">
+        <button class="btn btnBg" id="btnMarcar" title="Marcar como lista" type="button">
           <i class="${tareaIcono}"></i>
         </button>
-        <button class="btn btn-danger" id="btnEliminate" title="Eliminar tarea" type="button">
+        <button class="btn btnEliminar" id="btnEliminate" title="Eliminar tarea" type="button">
           <i class="fa-solid fa-trash-can"></i>
         </button>
       </div>
