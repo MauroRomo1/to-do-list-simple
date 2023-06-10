@@ -1,6 +1,9 @@
 const formularioTarea = document.getElementById("formularioTarea");
 const inputTareas = document.getElementById("inputTareas");
 const containerCardsTareas = document.getElementById("containerCardsTareas");
+const containerTareasRealizadas = document.getElementById(
+  "containerTareasRealizadas"
+);
 let contadorTareas = document.getElementById("contadorTareas");
 
 class Tarea {
@@ -11,7 +14,7 @@ class Tarea {
   }
 }
 
-const tareas = [];
+let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 
 const cargarTareas = (tareas, contenedor) => {
   contenedor.innerHTML = "";
@@ -29,8 +32,7 @@ const eliminarTarea = (id) => {
   const index = tareas.findIndex((tarea) => tarea.id === id);
   if (index !== -1) {
     tareas.splice(index, 1);
-    cargarTareas(tareas, containerCardsTareas);
-    contadorTareas.innerText = tareas.length;
+    actualizarTareas();
   }
 };
 
@@ -38,8 +40,7 @@ const marcarComoReady = (id) => {
   const tarea = tareas.find((tarea) => tarea.id === id);
   if (tarea) {
     tarea.marcada = !tarea.marcada;
-    cargarTareas(tareas, containerCardsTareas);
-    console.log(tarea);
+    actualizarTareas();
   }
 };
 
@@ -89,12 +90,24 @@ const agregarTarea = () => {
     );
     if (!tareaEncontrada) {
       tareas.push(new Tarea(userTarea.toLowerCase()));
-      cargarTareas(tareas, containerCardsTareas);
-      contadorTareas.innerText = tareas.length;
+      actualizarTareas();
     } else {
       console.log(`La tarea ${tareaEncontrada.titulo} ya existe en la lista.`);
     }
   }
+};
+
+const actualizarTareas = () => {
+  localStorage.setItem("tareas", JSON.stringify(tareas));
+  cargarTareas(
+    tareas.filter((tarea) => !tarea.marcada),
+    containerCardsTareas
+  );
+  cargarTareas(
+    tareas.filter((tarea) => tarea.marcada),
+    containerTareasRealizadas
+  );
+  contadorTareas.innerText = tareas.filter((tarea) => !tarea.marcada).length;
 };
 
 formularioTarea.addEventListener("submit", (e) => {
@@ -102,4 +115,16 @@ formularioTarea.addEventListener("submit", (e) => {
   agregarTarea();
   inputTareas.value = "";
   inputTareas.focus();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  cargarTareas(
+    tareas.filter((tarea) => !tarea.marcada),
+    containerCardsTareas
+  );
+  cargarTareas(
+    tareas.filter((tarea) => tarea.marcada),
+    containerTareasRealizadas
+  );
+  contadorTareas.innerText = tareas.filter((tarea) => !tarea.marcada).length;
 });
