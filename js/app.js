@@ -50,7 +50,7 @@ const generarTarjeta = (tarea) => {
 
   const tareaEstado = tarea.marcada
     ? "text-decoration-line-through"
-    : "fw-bold";
+    : "tareaNota";
   const tareaIcono = tarea.marcada
     ? "fa-solid fa-circle-check fa-lg"
     : "fa-regular fa-circle-check fa-lg";

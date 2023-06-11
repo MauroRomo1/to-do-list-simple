@@ -10,6 +10,19 @@ body {
   );
 }
 
+footer {
+  margin-top: auto;
+}
+
+h4,
+h5 {
+  font-family: "Kanit", sans-serif;
+}
+h6,
+p {
+  font-family: "Aoboshi One", serif;
+}
+
 .btnEliminar {
   background-color: #e60211;
   color: #ffff;
@@ -27,8 +40,4 @@ body {
 .btnBg:hover {
   background-color: #5810cc;
   color: #ffff;
-}
-
-footer {
-  margin-top: auto;
 }
