@@ -92,7 +92,10 @@ const agregarTarea = () => {
       tareas.push(new Tarea(userTarea.toLowerCase()));
       actualizarTareas();
     } else {
-      console.log(`La tarea ${tareaEncontrada.titulo} ya existe en la lista.`);
+      Swal.fire({
+        title: `<h5 class="text-center text-muted">La tarea "${tareaEncontrada.titulo}" ya existe en la lista.</h5>`,
+        confirmButtonColor: "#6610f2",
+      });
     }
   }
 };
